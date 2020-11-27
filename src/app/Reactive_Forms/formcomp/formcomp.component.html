@@ -1,0 +1,47 @@
+<h1>Formcomp</h1>
+
+
+<form [formGroup]="profileform" (ngSubmit)="onsubmit()">
+    <label>
+        Username:
+        <input type="text" formControlName="username">
+        <span *ngIf="getname.invalid && getname.touched && getname.dirty">Username required</span>
+        <span *ngIf="getname.pristine">Please enter your Username</span>
+    </label>
+    <br>
+    <label>
+        Password:
+        <input type="text" formControlName="password">
+        <span *ngIf="getpassword.invalid && getpassword.touched && getpassword.dirty">Password required</span>
+        <span *ngIf="getpassword.pristine">Please enter your Password</span>
+    </label>
+    <br>
+    <label>
+        Telephone:
+        <input type="text" formControlName="telephone">
+        <span *ngIf="gettelephone.invalid && gettelephone.touched && gettelephone.dirty">Telephone required</span>
+        <span *ngIf="gettelephone.pristine">Please enter your Telephone</span>
+    </label>
+    <br>
+    <div formGroupName="address">
+        <label>
+            City:
+            <input type="text" formControlName="city">
+            <span *ngIf="getcity.invalid && getcity.touched && getcity.dirty">City required</span>
+            <span *ngIf="getcity.pristine">Please enter your City</span>
+        </label>
+        <br>
+        <label>
+            Email:
+            <input type="email" formControlName="email">
+            <span *ngIf="getemail.invalid && getemail.touched && getemail.dirty">
+                <span *ngIf="getemail.errors.email || getemail.errors.pattern">email error</span>
+            </span>
+            <span *ngIf="getemail.pristine">Please enter your Email</span>
+        </label>
+        <br>
+    </div>
+    <button type="submit" [disabled]="profileform.invalid">Submit</button>
+</form>
+
+{{profileform.status}}

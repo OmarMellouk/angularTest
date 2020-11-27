@@ -1,0 +1,43 @@
+
+
+<h1>Formcomp2</h1>
+
+<form [formGroup]="myform">
+    <label>
+        Firstname:
+        <input type="text" formControlName="fname">
+        <ng-container *ngIf="firstname.invalid && firstname.touched && firstname.dirty">
+            <span *ngIf="firstname.errors.required">Firstname required</span>
+            <span *ngIf="firstname.errors.invalideName">Please don't use a nombre</span>
+        </ng-container>    
+        <span *ngIf="firstname.pristine">Please enter your Firstname</span>
+    </label>
+    <br>
+    <label>
+        Lastname:
+        <input type="text" formControlName="lname">
+        <span *ngIf="lastname.invalid && lastname.touched && lastname.dirty">Lastname required</span>
+        <span *ngIf="lastname.pristine">Please enter your Lastname</span>
+    </label>
+    <br>
+    <label>
+        Password:
+        <input type="text" formControlName="pwd">
+        <span *ngIf="password.invalid && password.touched && password.dirty">Password required</span>
+        <span *ngIf="password.pristine">Please enter your Password</span>
+    </label>
+    <br>
+    <label>
+        Confirm Password:
+        <input type="text" formControlName="cpwd">
+        <span *ngIf="cpassword.invalid && cpassword.touched && cpassword.dirty">Confirm Password required</span>
+        <span *ngIf="cpassword.pristine">Please enter your Confirm Password</span>
+        {{cpassword.errors | json}}
+    </label>
+    <br>
+    
+    <button type="submit" [disabled]="myform.invalid">Submit</button>
+</form>
+
+{{myform.status}}
+
